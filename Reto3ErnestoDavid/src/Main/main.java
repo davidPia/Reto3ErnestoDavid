@@ -1,5 +1,6 @@
 package Main;
 
+import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 import Clases.Categorias;
@@ -97,9 +98,9 @@ public class main {
 			if(opcion==4){
 				break;
 			}else if(opcion==1) {
-				
 				System.out.println("Introduce una nueva categoria");
 				Categorias cat=new Categorias(sc.nextLine());
+				Clases.CategoriasDAO.insertarCat(cat);
 			}else if(opcion==2) {
 				
 			}else if(opcion==3) {
