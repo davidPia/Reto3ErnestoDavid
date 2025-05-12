@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 import Clases.Categorias;
+import Clases.Clientes;
+import Clases.ClientesDAO;
 
 public class main {
 
@@ -113,7 +115,6 @@ public class main {
 		}while(true);
 	}
 	public static void gestion_clientes(Scanner sc) {
-		
 		do {
 			System.out.println("1-Alta de nuevos clientes");
 			System.out.println("2-Búsqueda por código");
@@ -123,7 +124,13 @@ public class main {
 				break;
 			}
 			else if(opcion==1){
-				
+				System.out.println("Introduce un nombre");
+				String nombre=sc.nextLine();
+				System.out.println("Introduce una direccion");
+				String direccion=sc.nextLine();
+				int codigo=Util.funciones.dimeEntero("Introduce un codigo", sc);
+				Clientes cli= new Clientes(nombre,direccion,codigo);
+				ClientesDAO.nuevoCliente(cli);
 			}else if(opcion==2) {
 				
 			}
