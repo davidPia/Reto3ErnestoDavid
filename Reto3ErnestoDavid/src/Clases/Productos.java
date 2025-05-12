@@ -14,6 +14,18 @@ public class Productos {
 	public Productos() {
 		super();
 	}
+	
+	public Productos(int idcategoria, String nombre, double precio, String descripcion, String color, String talla,
+			int stock) {
+		super();
+		this.idcategoria = idcategoria;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.descripcion = descripcion;
+		this.color = color;
+		this.talla = talla;
+		this.stock = stock;
+	}
 
 	public Productos(int idproducto, int idcategoria, String nombre, double precio, String descripcion, String color,
 			String talla, int stock) {

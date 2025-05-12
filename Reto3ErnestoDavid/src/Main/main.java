@@ -6,6 +6,7 @@ import java.util.Scanner;
 import Clases.Categorias;
 import Clases.Clientes;
 import Clases.ClientesDAO;
+import Clases.Productos;
 
 public class main {
 
@@ -108,6 +109,20 @@ public class main {
 				Categorias cat=new Categorias(sc.nextLine());
 				Clases.CategoriasDAO.insertarCat(cat);
 			}else if(opcion==2) {
+				System.out.println("Introduce los datos de un producto:");
+				System.out.println("nombre");
+				String nombre=sc.nextLine();
+				double precio=Util.funciones.dimeDouble("precio", sc);
+				System.out.println("descripcion ");
+				String descripcion=sc.nextLine();
+				System.out.println("color ");
+				String color=sc.nextLine();
+				System.out.println("talla ");
+				String talla=sc.nextLine();
+				int stock=Util.funciones.dimeEntero("stock", sc);
+				//Enseñar las categorias, elegir una y crear el producto
+				
+				Productos pro= new Productos(4,nombre,precio,descripcion,color,talla,stock);
 				
 			}else if(opcion==3) {
 				gestion_clientes(sc);
