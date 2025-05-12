@@ -2,7 +2,27 @@
 insert into categorias(nombre)
 values(?);
 
+-- 1.2
+select * from categorias;-- Funcion mostrarCategorias
+
+insert into productos(idcategoria, nombre, precio, descripcion, color, talla, stock)
+values(?,?,?,?,?,?,?);
 
 -- 1.3.1
 insert into clientes(nombre, direccion, codigo)
 values(?,?,?);
+
+-- 1.3.2
+select * from clientes 
+where idcliente=?;
+
+update clientes
+set nombre=?, direccion=?, codigo=?
+where idcliente=?;
+
+-- 2.1
+select * from categorias; -- Funcion mostrarCategorias
+
+select * from productos a
+inner join categorias b on b.idcategoria=a.idcategoria
+where a.idcategoria=(select idcategoria from categorias where nombre=?);
