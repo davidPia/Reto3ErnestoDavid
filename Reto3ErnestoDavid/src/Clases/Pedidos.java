@@ -20,7 +20,7 @@ public class Pedidos {
 		this.idcliente = idcliente;
 		this.precioTotal = precioTotal;
 		this.direccionEnvio = direccionEnvio;
-		this.fecha = fecha;
+		this.fecha = fecha; 
 	}
 
 	public int getIdpedido() {
