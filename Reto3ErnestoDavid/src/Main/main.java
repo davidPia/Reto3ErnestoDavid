@@ -10,6 +10,7 @@ import Clases.CategoriasDAO;
 import Clases.Clientes;
 import Clases.ClientesDAO;
 import Clases.Productos;
+import Clases.ProductosDAO;
 
 public class main {
 
@@ -136,7 +137,7 @@ public class main {
 				}while(!(listaCat.contains(idcatElegida)));
 				
 				Productos pro= new Productos(idcatElegida,nombre,precio,descripcion,color,talla,stock);
-				
+				ProductosDAO.insertarCat(pro);
 			}else if(opcion==3) {
 				gestion_clientes(sc);
 			}
