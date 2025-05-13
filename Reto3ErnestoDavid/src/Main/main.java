@@ -139,7 +139,7 @@ public class main {
 				//Compruebo que la cat existe
 				do {
 					idcatElegida=Util.funciones.dimeEntero("Introduce el id de una categoria", sc);
-				}while(!(listaCat.contains(idcatElegida)));
+				}while(!(listaCat.contains(new Categorias (idcatElegida,""))));
 				
 				Productos pro= new Productos(idcatElegida,nombre,precio,descripcion,color,talla,stock);
 				ProductosDAO.insertarCat(pro);

@@ -40,6 +40,21 @@ public class Categorias {
 	public String toString() {
 		return "Categorias [idcategoria=" + idcategoria + ", nombre=" + nombre + "]";
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Categorias)
+		{
+			Categorias cat = (Categorias)obj;
+			if(cat.getIdcategoria()==this.getIdcategoria()) {
+				return true;
+		}else {
+		return false;
+		}
+	}
+		return false;
+
+	}
 	
 	
 }
