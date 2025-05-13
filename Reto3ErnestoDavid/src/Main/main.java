@@ -161,7 +161,7 @@ public class main {
 				Clientes cli= new Clientes(nombre,direccion,codigo);
 				ClientesDAO.nuevoCliente(cli);
 			}else if(opcion==2) {
-				
+				System.out.println("Introduce un codigo de cliente ");
 			}
 		}while(true);
 	}
