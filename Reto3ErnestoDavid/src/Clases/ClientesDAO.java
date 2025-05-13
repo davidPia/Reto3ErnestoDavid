@@ -12,6 +12,14 @@ import Util.Conexion;
 public class ClientesDAO {
 	public static void modificarCliente(Clientes cli) {
 		try (Connection con = Conexion.abreConexion()) {
+			PreparedStatement stmt = con.prepareStatement("update clientes "
+					+ "set nombre=?, direccion=?, codigo=? "
+					+ "where idcliente=?");
+			stmt.setString(1, cli.getNombre());
+			stmt.setString(2, cli.getDireccion());
+			stmt.setInt(3,cli.getCodigo());
+			stmt.setInt(4, cli.getIdcliente());
+			stmt.executeUpdate();
 	} catch (Exception ex) { 
 		ex.printStackTrace();
 	}finally {

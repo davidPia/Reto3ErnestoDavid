@@ -174,7 +174,7 @@ public class main {
 					System.out.println("No existe un cliente con ese id");
 				}else {
 						System.out.println(clienteElegido);
-						
+						ClientesDAO.modificarCliente(clienteElegido);
 					
 				}
 			}
