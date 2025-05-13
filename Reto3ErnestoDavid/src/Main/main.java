@@ -9,6 +9,7 @@ import Clases.Categorias;
 import Clases.CategoriasDAO;
 import Clases.Clientes;
 import Clases.ClientesDAO;
+import Clases.Pedidos;
 import Clases.PedidosDAO;
 import Clases.Productos;
 import Clases.ProductosDAO;
@@ -75,7 +76,10 @@ public class main {
 			}else if(opcion==1) {
 				
 			}else if(opcion==2) {
-				PedidosDAO.mostrarPedFech();
+				List<Pedidos> mostrarPedFech = PedidosDAO.mostrarPedFech();
+				for (Pedidos pedidos : mostrarPedFech) {
+					System.out.println(pedidos);
+				}
 			}
 		}while(true);
 		
