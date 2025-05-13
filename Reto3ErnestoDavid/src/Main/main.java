@@ -1,9 +1,12 @@
 package Main;
 
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import Clases.Categorias;
+import Clases.CategoriasDAO;
 import Clases.Clientes;
 import Clases.ClientesDAO;
 import Clases.Productos;
@@ -95,7 +98,7 @@ public class main {
 	}
 	//submenu de mantenimientos(opcion 1)
 	public static void mantenimientos(Scanner sc) {
-		
+		List<Categorias> listaCat=new ArrayList<>();
 		do {
 			System.out.println("1-Gestión de categorías");
 			System.out.println("2-Gestión de productos");
@@ -121,8 +124,18 @@ public class main {
 				String talla=sc.nextLine();
 				int stock=Util.funciones.dimeEntero("stock", sc);
 				//Enseñar las categorias, elegir una y crear el producto
+				listaCat=CategoriasDAO.mostrarCat();
+				for (Categorias categorias : listaCat) {
+					System.out.println(categorias);
+				}
+				int idcatElegida;
+				Categorias catElegida= new Categorias();
+				//Compruebo que la cat existe
+				do {
+					idcatElegida=Util.funciones.dimeEntero("Introduce el id de una categoria", sc);
+				}while(!(listaCat.contains(idcatElegida)));
 				
-				Productos pro= new Productos(4,nombre,precio,descripcion,color,talla,stock);
+				Productos pro= new Productos(idcatElegida,nombre,precio,descripcion,color,talla,stock);
 				
 			}else if(opcion==3) {
 				gestion_clientes(sc);

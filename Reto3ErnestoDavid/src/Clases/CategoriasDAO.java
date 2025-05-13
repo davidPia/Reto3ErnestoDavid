@@ -2,10 +2,30 @@ package Clases;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import Util.Conexion;
 
 public class CategoriasDAO {
+	public static List<Categorias> mostrarCat() {
+		List<Categorias>listaCat=new ArrayList<>();
+		try (Connection con = Conexion.abreConexion()) {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from categorias");
+			while (rs.next()) {
+				listaCat.add(new Categorias(rs.getInt("idcategoria"), rs.getString("nombre")));
+			}
+			rs.close();
+		} catch (Exception ex) { 
+			ex.printStackTrace();
+		}finally {
+			Conexion.cierraConexion();
+		}
+		return listaCat;
+	}
 	public static void insertarCat(Categorias cat) {
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("Insert into categorias(nombre) values (?)");
