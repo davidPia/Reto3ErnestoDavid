@@ -18,7 +18,7 @@ public class PedidosDAO {
 					+ "where month(fecha)=?");
 			int mes = LocalDate.now().getMonthValue();
 			stmt.setInt(1, mes);
-			ResultSet rs = stmt.executeQuery("select * from categorias");
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				listaPedFech.add(new Pedidos(rs.getInt("idpedido"), rs.getInt("idcliente"), rs.getDouble("precioTotal"), rs.getString("direccionEnvio"), rs.getDate("fecha")));
 			}
