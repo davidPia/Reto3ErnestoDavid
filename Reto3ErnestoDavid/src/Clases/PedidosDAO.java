@@ -30,4 +30,25 @@ public class PedidosDAO {
 		}
 		return listaPedFech;
 	}
+	
+	public static List<Pedidos> mostrarPedCli() {
+		List<Pedidos> listaPedCli = new ArrayList<Pedidos>();
+		try (Connection con = Conexion.abreConexion()) {
+			PreparedStatement stmt = con.prepareStatement("select * from pedidos "
+					+ "inner join clientes b on a.idcliente=b.idcliente "
+					+ "where b.codigo=?");
+			int mes = LocalDate.now().getMonthValue();
+			stmt.setInt(1, mes);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				listaPedCli.add(new Pedidos(rs.getInt("idpedido"), rs.getInt("idcliente"), rs.getDouble("precioTotal"), rs.getString("direccionEnvio"), rs.getDate("fecha")));
+			}
+			rs.close();
+		} catch (Exception ex) { 
+			ex.printStackTrace();
+		}finally {
+			Conexion.cierraConexion();
+		}
+		return listaPedCli;
+	}
 }
