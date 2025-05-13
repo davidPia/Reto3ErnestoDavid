@@ -10,24 +10,34 @@ import java.util.List;
 import Util.Conexion;
 
 public class ClientesDAO {
-	public static List<Clientes> buscarCliente(Clientes cli) {
-		List<Clientes>listaCli= new ArrayList<>();
+	public static void modificarCliente(Clientes cli) {
+		try (Connection con = Conexion.abreConexion()) {
+	} catch (Exception ex) { 
+		ex.printStackTrace();
+	}finally {
+		Conexion.cierraConexion();
+	}
+	}
+	public static  Clientes buscarCliente(Clientes cli) {
+		Clientes clienteNuevo= new Clientes();
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("select * from clientes "
 					+ "where idcliente=?");
 			stmt.setInt(1,cli.getIdcliente());
 			ResultSet rs = stmt.executeQuery();
 			
-			while (rs.next()) {
-				listaCli.add(new Clientes(rs.getInt("idcliente"),rs.getString("nombre"),rs.getString("direccion"),rs.getInt("codigo")));
+			if (rs.next()) {
+				clienteNuevo=(new Clientes(rs.getInt("idcliente"),rs.getString("nombre"),rs.getString("direccion"),rs.getInt("codigo")));
+				return clienteNuevo;
+			}else {
+				return null;
 			}
-			rs.close();
 		} catch (Exception ex) { 
 			ex.printStackTrace();
 		}finally {
 			Conexion.cierraConexion();
 		}
-		return listaCli;
+		return null;
 		
 	}
 	public static void nuevoCliente(Clientes cli) {

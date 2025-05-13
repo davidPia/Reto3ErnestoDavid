@@ -145,6 +145,7 @@ public class main {
 		}while(true);
 	}
 	public static void gestion_clientes(Scanner sc) {
+		List<Clientes> listaCli= new ArrayList<>();
 		do {
 			System.out.println("1-Alta de nuevos clientes");
 			System.out.println("2-Búsqueda por código");
@@ -162,7 +163,16 @@ public class main {
 				Clientes cli= new Clientes(nombre,direccion,codigo);
 				ClientesDAO.nuevoCliente(cli);
 			}else if(opcion==2) {
-				System.out.println("Introduce un codigo de cliente ");
+				Clientes cliBuscar=new Clientes();
+				cliBuscar.setIdcliente(Util.funciones.dimeEntero("Introduce un codigo de cliente ", sc));
+				Clientes clienteElegido=ClientesDAO.buscarCliente(cliBuscar);
+				if(clienteElegido==null) {
+					System.out.println("No existe un cliente con ese id");
+				}else {
+						System.out.println(clienteElegido);
+						
+					
+				}
 			}
 		}while(true);
 	}
