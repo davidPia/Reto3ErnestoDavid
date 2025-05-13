@@ -26,3 +26,7 @@ select * from categorias; -- Funcion mostrarCategorias
 select * from productos a
 inner join categorias b on b.idcategoria=a.idcategoria
 where a.idcategoria=(select idcategoria from categorias where nombre=?);
+
+-- 2.2
+select * from productos
+where nombre=? and talla=? and color=?;
