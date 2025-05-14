@@ -56,7 +56,12 @@ public class main {
 			else if(opcion==1) {
 				
 			}else if(opcion==2) {
-				
+				System.out.println("Introduce el codigo de un cliente");
+				int codigo = sc.nextInt();
+				List<Pedidos> mostrarPedCli = PedidosDAO.mostrarPedCli(codigo);
+				for (Pedidos pedidos : mostrarPedCli) {
+					System.out.println(pedidos);
+				}
 			}else if(opcion==3) {
 				
 			}
