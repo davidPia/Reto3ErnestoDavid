@@ -11,6 +11,13 @@ public class Clientes {
 		super();
 	}
 	
+	
+	public Clientes(int codigo) {
+		super();
+		this.codigo = codigo;
+	}
+
+
 	public Clientes(String nombre, String direccion, int codigo) {
 		super();
 		this.nombre = nombre;

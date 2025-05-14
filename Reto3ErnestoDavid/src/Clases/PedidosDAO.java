@@ -31,13 +31,13 @@ public class PedidosDAO {
 		return listaPedFech;
 	}
 	
-	public static List<Pedidos> mostrarPedCli(int num) {
+	public static List<Pedidos> mostrarPedCli(Clientes cliente) {
 		List<Pedidos> listaPedCli = new ArrayList<Pedidos>();
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("select * from pedidos "
 					+ "inner join clientes b on a.idcliente=b.idcliente "
 					+ "where b.codigo=?");
-			stmt.setInt(1, num);
+			stmt.setInt(1, cliente.getCodigo());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				listaPedCli.add(new Pedidos(rs.getInt("idpedido"), rs.getInt("idcliente"), rs.getDouble("precioTotal"), rs.getString("direccionEnvio"), rs.getDate("fecha")));

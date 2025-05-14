@@ -13,6 +13,7 @@ import Clases.Pedidos;
 import Clases.PedidosDAO;
 import Clases.Productos;
 import Clases.ProductosDAO;
+import Util.funciones;
 
 public class main {
 
@@ -56,9 +57,9 @@ public class main {
 			else if(opcion==1) {
 				
 			}else if(opcion==2) {
-				System.out.println("Introduce el codigo de un cliente");
-				int codigo = sc.nextInt();
-				List<Pedidos> mostrarPedCli = PedidosDAO.mostrarPedCli(codigo);
+				int codigo = funciones.dimeEntero("Introduce el codigo de un cliente", sc);
+				Clientes cliente = new Clientes(codigo);
+				List<Pedidos> mostrarPedCli = PedidosDAO.mostrarPedCli(cliente);
 				for (Pedidos pedidos : mostrarPedCli) {
 					System.out.println(pedidos);
 				}
