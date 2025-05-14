@@ -24,8 +24,7 @@ where idcliente=?;
 select * from categorias; -- Funcion mostrarCategorias
 
 select * from productos a
-inner join categorias b on b.idcategoria=a.idcategoria
-where a.idcategoria=(select idcategoria from categorias where nombre=?);
+where idcategoria=(select idcategoria from categorias where nombre="Chaquetas");
 
 -- 2.2
 select * from productos
@@ -36,3 +35,21 @@ where nombre=? and talla=? and color=?;
 -- 3.2
 select * from pedidos 
 where month(fecha)=?;
+
+-- 4.1
+select * from productos
+where stock<5;
+
+update productos
+set stock=+?
+where stock<5;
+
+-- 4.2
+select * from pedidos a
+inner join clientes b on a.idcliente=b.idcliente
+where b.codigo=?;
+
+-- 4.3
+select * from productos a
+inner join pedidoproducto b on b.idproducto=a.idproducto
+where b.unidades=(select max(unidades) from pedidoproducto);
