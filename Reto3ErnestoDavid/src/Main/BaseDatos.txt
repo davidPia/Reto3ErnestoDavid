@@ -45,9 +45,8 @@ set stock=+?
 where stock<5;
 
 -- 4.2
-select * from pedidos a
-inner join clientes b on a.idcliente=b.idcliente
-where b.codigo=?;
+select * from pedidos 
+where idcliente=(select idcliente from clientes where codigo=?);
 
 -- 4.3
 select * from productos a
