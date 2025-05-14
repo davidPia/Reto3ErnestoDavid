@@ -28,6 +28,37 @@ public class ProductosDAO {
 	}
 	return listaProd;
 	}
+	public static void buscarPro(Productos pro) {
+		try (Connection con = Conexion.abreConexion()) {
+		if(pro.getNombre()!= null) {
+			if(pro.getTalla()!=null) {
+				if(pro.getColor()!=null){
+					//tiene las tres
+				}else {
+					//tiene nombre y talla 
+				}
+			}else {
+				//solo tiene nombre
+			}
+		}else if(pro.getTalla()!=null) {
+			if(pro.getColor()!=null){
+				//tiene talla y color
+			}else {
+				//solo tiene talla 
+			}
+		}else if(pro.getColor()!=null) {
+			if(pro.getNombre()!= null) {
+				//tiene color y nombre
+			}else {
+				
+			}//solo tiene color
+		}
+		}catch (Exception ex) { 
+			ex.printStackTrace();
+		}finally {
+			Conexion.cierraConexion();
+		}
+	}
 	public static void insertarPro(Productos pro) {
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("insert into productos(idcategoria, nombre, precio, descripcion, color, talla, stock) "
