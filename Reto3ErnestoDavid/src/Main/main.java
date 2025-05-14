@@ -65,7 +65,7 @@ public class main {
 	}
 	//submenu de pedidos(opcion 3)
 	public static void pedidos(Scanner sc) {
-		
+	
 		do {
 			System.out.println("1-Crear pedido");
 			System.out.println("2-Ver pedidos");
@@ -86,7 +86,8 @@ public class main {
 	}
 	//submenu de catalogo(opcion 2)
 	public static void catalogo_prod(Scanner sc) {
-		
+		List<Categorias> listaCat= new ArrayList<>();
+		List<Productos> listaPro= new ArrayList<>();
 		do {
 			System.out.println("1-Listar productos por categoría");
 			System.out.println("2-Buscar productos");
@@ -96,7 +97,14 @@ public class main {
 				break;
 			}
 			else if(opcion==1){
-				
+				mostrarCategorias(listaCat);
+				System.out.println("Elige una categoria");
+				String nombreCat=sc.nextLine();
+				Categorias catElegi=new Categorias(0,nombreCat);
+				listaPro=ProductosDAO.listarProdCat(catElegi);
+				for (Productos productos : listaPro) {
+					System.out.println(productos);
+				}
 			}else if(opcion==2) {
 				
 			}
@@ -130,10 +138,7 @@ public class main {
 				String talla=sc.nextLine();
 				int stock=Util.funciones.dimeEntero("stock", sc);
 				//Enseñar las categorias, elegir una y crear el producto
-				listaCat=CategoriasDAO.mostrarCat();
-				for (Categorias categorias : listaCat) {
-					System.out.println(categorias);
-				}
+				mostrarCategorias(listaCat);
 				int idcatElegida;
 				Categorias catElegida= new Categorias();
 				//Compruebo que la cat existe
@@ -142,12 +147,13 @@ public class main {
 				}while(!(listaCat.contains(new Categorias (idcatElegida,""))));
 				
 				Productos pro= new Productos(idcatElegida,nombre,precio,descripcion,color,talla,stock);
-				ProductosDAO.insertarCat(pro);
+				ProductosDAO.insertarPro(pro);
 			}else if(opcion==3) {
 				gestion_clientes(sc);
 			}
 		}while(true);
 	}
+	
 	public static void gestion_clientes(Scanner sc) {
 		List<Clientes> listaCli= new ArrayList<>();
 		do {
@@ -180,5 +186,10 @@ public class main {
 			}
 		}while(true);
 	}
-
+	public static void mostrarCategorias(List<Categorias> listaCat) {
+		listaCat=CategoriasDAO.mostrarCat();
+		for (Categorias categorias : listaCat) {
+			System.out.println(categorias);
+		}
+	}
 }
