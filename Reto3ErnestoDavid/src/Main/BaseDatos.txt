@@ -24,7 +24,8 @@ where idcliente=?;
 select * from categorias; -- Funcion mostrarCategorias
 
 select * from productos a
-where idcategoria=(select idcategoria from categorias where nombre="Chaquetas");
+inner join categorias b on a.idcategoria=b.idcategoria
+where b.nombre=?;
 
 -- 2.2
 select * from productos
