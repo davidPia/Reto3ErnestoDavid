@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 import Clases.Categorias;
 import Clases.CategoriasDAO;
 import Clases.Clientes;
@@ -80,7 +82,9 @@ public class main {
 			if(opcion==3){
 				break;
 			}else if(opcion==1) {
-				System.out.println("Introduce el codigo del cliente");
+				System.out.println("");
+				Clientes cli= new Clientes(Util.funciones.dimeEntero("Introduce el codigo del cliente", sc));
+				ClientesDAO.buscarCliente(cli);
 			}else if(opcion==2) {
 				List<Pedidos> mostrarPedFech = PedidosDAO.mostrarPedFech();
 				for (Pedidos pedidos : mostrarPedFech) {
@@ -188,7 +192,7 @@ public class main {
 				ClientesDAO.nuevoCliente(cli);
 			}else if(opcion==2) {
 				Clientes cliBuscar=new Clientes();
-				cliBuscar.setIdcliente(Util.funciones.dimeEntero("Introduce un codigo de cliente ", sc));
+				cliBuscar.setCodigo(Util.funciones.dimeEntero("Introduce un codigo de cliente ", sc));
 				Clientes clienteElegido=ClientesDAO.buscarCliente(cliBuscar);
 				if(clienteElegido==null) {
 					System.out.println("No existe un cliente con ese id");

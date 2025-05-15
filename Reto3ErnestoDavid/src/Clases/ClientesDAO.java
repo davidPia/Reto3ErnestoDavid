@@ -30,8 +30,8 @@ public class ClientesDAO {
 		Clientes clienteNuevo= new Clientes();
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("select * from clientes "
-					+ "where idcliente=?");
-			stmt.setInt(1,cli.getIdcliente());
+					+ "where codigo=?");
+			stmt.setInt(1,cli.getCodigo());
 			ResultSet rs = stmt.executeQuery();
 			
 			if (rs.next()) {
