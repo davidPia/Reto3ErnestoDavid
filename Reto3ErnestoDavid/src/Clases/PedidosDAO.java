@@ -34,8 +34,9 @@ public class PedidosDAO {
 	public static List<Pedidos> mostrarPedCli(Clientes cliente) {
 		List<Pedidos> listaPedCli = new ArrayList<Pedidos>();
 		try (Connection con = Conexion.abreConexion()) {
-			PreparedStatement stmt = con.prepareStatement("select * from pedidos "
-					+ "where idcliente=(select idcliente from clientes where codigo=?)");
+			PreparedStatement stmt = con.prepareStatement("select * from pedidos a"
+					+ "inner join clientes b on a.idcliente=b.idcliente"
+					+ "where b.codigo=?");
 			stmt.setInt(1, cliente.getCodigo());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
