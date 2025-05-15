@@ -80,7 +80,7 @@ public class main {
 			if(opcion==3){
 				break;
 			}else if(opcion==1) {
-				
+				System.out.println("Introduce el codigo del cliente");
 			}else if(opcion==2) {
 				List<Pedidos> mostrarPedFech = PedidosDAO.mostrarPedFech();
 				for (Pedidos pedidos : mostrarPedFech) {
