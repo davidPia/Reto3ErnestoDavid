@@ -112,7 +112,15 @@ public class main {
 					System.out.println(productos);
 				}
 			}else if(opcion==2) {
-				
+				Productos pro= new Productos();
+				System.out.println("Introduzca el producto que desea buscar");
+				System.out.println("Nombre: ");
+				pro.setNombre(sc.nextLine());
+				System.out.println("Talla: ");
+				pro.setTalla(sc.nextLine());
+				System.out.println("Color: ");
+				pro.setColor(sc.nextLine());
+				buscarProductos(listaPro, pro);
 			}
 		}while(true);
 	}
@@ -196,6 +204,12 @@ public class main {
 		listaCat=CategoriasDAO.mostrarCat();
 		for (Categorias categorias : listaCat) {
 			System.out.println(categorias);
+		}
+	}
+	public static void buscarProductos(List<Productos> listaPro,Productos pro) {
+		listaPro=ProductosDAO.buscarPro(pro);
+		for (Productos productos : listaPro) {
+			System.out.println(productos.toStringconCat());
 		}
 	}
 }

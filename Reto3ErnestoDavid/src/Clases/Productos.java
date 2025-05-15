@@ -106,8 +106,12 @@ public class Productos {
 
 	@Override
 	public String toString() {
-		return "Productos [nombre=" + nombre+ ", precio=" + precio + ", descripcion=" + descripcion + ", color=" + color + ", talla=" + talla
+		return "Nombre=" + nombre+ ", precio=" + precio + ", descripcion=" + descripcion + ", color=" + color + ", talla=" + talla
 				+ ", stock=" + stock + "]";
 	}
 	
-}
+	public String toStringconCat() {
+		return "Categoria="+idcategoria+ " nombre=" + nombre+ ", precio=" + precio + ", descripcion=" + descripcion + ", color=" + color + ", talla=" + talla
+				+ ", stock=" + stock + "]";
+	}
+} 

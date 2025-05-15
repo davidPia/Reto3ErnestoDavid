@@ -13,8 +13,9 @@ public class ProductosDAO {
 		List<Productos> listaProd = new ArrayList<>();
 
 		try (Connection con = Conexion.abreConexion()) {
-			PreparedStatement stmt = con.prepareStatement("select * from productos "
-					+ "where idcategoria=(select idcategoria from categorias where nombre=?)");
+			PreparedStatement stmt = con.prepareStatement("select * from productos a "
+					+ "inner join categorias b on a.idcategoria=b.idcategoria "
+					+ "where b.nombre=?");
 			stmt.setString(1, cat.getNombre());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -35,31 +36,40 @@ public class ProductosDAO {
 		int contador=0;
 		String sql = "select * from productos where 1=1 ";
 		try (Connection con = Conexion.abreConexion()) {
-			if (pro.getNombre() != null) {
-				sql = sql.concat("and nombre=? ");
-				
+			if (!(pro.getNombre().equals(""))) {
+				sql = sql.concat("and nombre=?");
+				contador=contador+1;
 			}
-			if (pro.getTalla() != null) {
-				sql = sql.concat("and talla=? ");
-			
+			if (!(pro.getTalla().equals(""))) {
+				sql = sql.concat("and talla=?");
+				contador=contador+4;
 			}
-			if (pro.getColor() != null) {
-				sql = sql.concat("and color=? ");
-				
+			if (!(pro.getColor().equals(""))) {
+				sql = sql.concat("and color=?");
+				contador=contador+6;
 			}
+			System.out.println(sql);
 			PreparedStatement stmt = con.prepareStatement(sql);
-			if (pro.getNombre() != null) {
-				stmt.setString(1, pro.getNombre());
-			}
-			if (pro.getTalla() != null) {
-				
-			}
-			if(contador==3) {
-				stmt.setString(1, pro.getNombre());
+			if(contador==1) {
+				stmt.setString(1,pro.getNombre());
+			}else if(contador==4) {
+				stmt.setString(1,pro.getTalla());
+			}else if(contador==6) {
+				stmt.setString(1,pro.getColor());
+			}else if(contador==5) {
+				stmt.setString(1,pro.getNombre());
 				stmt.setString(2,pro.getTalla());
-				stmt.set
+			}else if(contador==11) {
+				stmt.setString(1,pro.getNombre());
+				stmt.setString(2,pro.getTalla());
+				stmt.setString(3,pro.getColor());
+			}else if(contador==7) {
+				stmt.setString(1,pro.getNombre());
+				stmt.setString(2,pro.getColor());
+			}else if(contador==10) {
+				stmt.setString(2,pro.getTalla());
+				stmt.setString(3,pro.getColor());
 			}
-			
 			
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
