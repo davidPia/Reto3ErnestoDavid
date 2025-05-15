@@ -46,8 +46,11 @@ set stock=+?
 where stock<5;
 
 -- 4.2
-select * from pedidos a
+select a.fecha, a.precioTotal, a.direccionEnvio, e.nombre, d.nombre, c.unidades from pedidos a
 inner join clientes b on a.idcliente=b.idcliente
+inner join pedidoproducto c on a.idpedido=c.idpedido
+inner join productos d on c.idproducto=d.idproducto
+inner join categorias e on d.idcategoria=e.idcategoria
 where b.codigo=?;
 
 -- 4.3
