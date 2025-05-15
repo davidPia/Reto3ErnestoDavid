@@ -14,7 +14,7 @@ public class PedidosDAO {
 	public static List<Pedidos> mostrarPedFech() {
 		List<Pedidos> listaPedFech = new ArrayList<Pedidos>();
 		try (Connection con = Conexion.abreConexion()) {
-			PreparedStatement stmt = con.prepareStatement("select a.fecha, b.nombre, a.precioTotal, a.direccion, e.nombre, d.nombre, c.unidades from pedidos a "
+			PreparedStatement stmt = con.prepareStatement("select a.fecha, b.nombre, a.precioTotal, a.direccionEnvio, e.nombre, d.nombre, c.unidades from pedidos as a "
 					+ "inner join clientes b on a.idcliente=b.idcliente "
 					+ "inner join pedidoproducto c on a.idpedido=c.idpedido "
 					+ "inner join productos d on c.idproducto=d.idproducto "

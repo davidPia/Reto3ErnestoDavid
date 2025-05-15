@@ -83,8 +83,12 @@ public class main {
 				break;
 			}else if(opcion==1) {
 				System.out.println("");
+				Clientes cliElegido=new Clientes();
+				do {
 				Clientes cli= new Clientes(Util.funciones.dimeEntero("Introduce el codigo del cliente", sc));
-				ClientesDAO.buscarCliente(cli);
+				cliElegido=ClientesDAO.buscarCliente(cli);
+				}while(cliElegido.getNombre().equals(""));
+				System.out.println(cliElegido.getNombre());
 			}else if(opcion==2) {
 				List<Pedidos> mostrarPedFech = PedidosDAO.mostrarPedFech();
 				for (Pedidos pedidos : mostrarPedFech) {
