@@ -162,14 +162,16 @@ public class main {
 				int stock=Util.funciones.dimeEntero("stock", sc);
 				//Enseñar las categorias, elegir una y crear el producto
 				mostrarCategorias(listaCat);
-				int idcatElegida;
+				int idcatElegida=0;
 				Categorias catElegida= new Categorias();
+				Categorias cat2=new Categorias (idcatElegida,"");
 				//Compruebo que la cat existe
 				do {
 					idcatElegida=Util.funciones.dimeEntero("Introduce el id de una categoria", sc);
-				}while(!(listaCat.contains(new Categorias (idcatElegida,""))));
+				}while(!(listaCat.contains(cat2.getIdcategoria())));
+				cat2.setIdcategoria(idcatElegida);
 				
-				Productos pro= new Productos(idcatElegida,nombre,precio,descripcion,color,talla,stock);
+				Productos pro= new Productos(cat2,nombre,precio,descripcion,color,talla,stock);
 				ProductosDAO.insertarPro(pro);
 			}else if(opcion==3) {
 				gestion_clientes(sc);
@@ -221,4 +223,5 @@ public class main {
 			System.out.println(productos.toStringconCat());
 		}
 	}
+	
 }
