@@ -95,4 +95,41 @@ public class ProductosDAO {
 			Conexion.cierraConexion();
 		}
 	}
+	
+	public static List<Productos> listarProdBajoStock(Categorias cat) {
+		List<Productos> listaProd = new ArrayList<>();
+
+		try (Connection con = Conexion.abreConexion()) {
+			PreparedStatement stmt = con.prepareStatement("select * from productos "
+					+ "where stock<5");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Categorias cat3= new Categorias(rs.getInt("idcategoria"),"");
+				listaProd.add(new Productos(cat3, rs.getString("nombre"), rs.getDouble("precio"),
+						rs.getString("descripcion"), rs.getString("color"), rs.getString("talla"), rs.getInt("stock")));
+			}
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+		} finally {
+			Conexion.cierraConexion();
+		}
+		return listaProd;
+	}
+	
+	public static void actualizarStock(int num) {
+		try (Connection con = Conexion.abreConexion()) {
+			PreparedStatement stmt = con.prepareStatement(
+					"update productos "
+					+ "set stock=+? "
+					+ "where stock<5 and ?>0");
+			stmt.setInt(1, num);
+			stmt.setInt(2, num);
+			stmt.execute();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Conexion.cierraConexion();
+		}
+	}
 }
