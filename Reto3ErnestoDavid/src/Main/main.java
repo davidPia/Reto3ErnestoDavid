@@ -11,6 +11,8 @@ import Clases.Categorias;
 import Clases.CategoriasDAO;
 import Clases.Clientes;
 import Clases.ClientesDAO;
+import Clases.PedidoProductoDAO;
+import Clases.Pedidoproducto;
 import Clases.Pedidos;
 import Clases.PedidosDAO;
 import Clases.Productos;
@@ -98,9 +100,9 @@ public class main {
 				
 				System.out.println(cliElegido.getNombre());
 			}else if(opcion==2) {
-				List<Pedidos> mostrarPedFech = PedidosDAO.mostrarPedFech();
-				for (Pedidos pedidos : mostrarPedFech) {
-					System.out.println(pedidos);
+				List<Pedidoproducto> mostrarPedFech = PedidoProductoDAO.mostrarPedFech();
+				for (Pedidoproducto Pedidoproducto : mostrarPedFech) {
+					System.out.println(Pedidoproducto);
 				}
 			}
 		}while(true);

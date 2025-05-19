@@ -3,8 +3,8 @@ package Clases;
 public class Pedidoproducto {
 
 	protected int idpedidoproducto;
-	protected Pedidos idpedido;
-	protected Productos idproducto;
+	protected Pedidos pedido;
+	protected Productos producto;
 	protected int unidades;
 	protected double precio;
 	
@@ -12,37 +12,37 @@ public class Pedidoproducto {
 		super();
 	}
 
-	public Pedidoproducto(int idpedidoproducto, Pedidos idpedido, Productos idproducto, int unidades, double precio) {
+	public Pedidoproducto(int idpedidoproducto, Pedidos pedido, Productos producto, int unidades, double precio) {
 		super();
 		this.idpedidoproducto = idpedidoproducto;
-		this.idpedido = idpedido;
-		this.idproducto = idproducto;
+		this.pedido = pedido;
+		this.producto = producto;
 		this.unidades = unidades;
 		this.precio = precio;
 	}
 
-	public int getIdpedidoproducto() {
+	public int getPedidoproducto() {
 		return idpedidoproducto;
 	}
 
-	public void setIdpedidoproducto(int idpedidoproducto) {
+	public void setPedidoproducto(int idpedidoproducto) {
 		this.idpedidoproducto = idpedidoproducto;
 	}
 
-	public Pedidos getIdpedido() {
-		return idpedido;
+	public Pedidos getPedido() {
+		return pedido;
 	}
 
-	public void setIdpedido(Pedidos idpedido) {
-		this.idpedido = idpedido;
+	public void setPedido(Pedidos pedido) {
+		this.pedido = pedido;
 	}
 
-	public Productos getIdproducto() {
-		return idproducto;
+	public Productos getProducto() {
+		return producto;
 	}
 
-	public void setIdproducto(Productos idproducto) {
-		this.idproducto = idproducto;
+	public void setIdproducto(Productos producto) {
+		this.producto = producto;
 	}
 
 	public int getUnidades() {
@@ -63,8 +63,7 @@ public class Pedidoproducto {
 
 	@Override
 	public String toString() {
-		return "Pedidoproducto [idpedidoproducto=" + idpedidoproducto + ", idpedido=" + idpedido + ", idproducto="
-				+ idproducto + ", unidades=" + unidades + ", precio=" + precio + "]";
+		return pedido.getFecha()+" | "+pedido.getIdcliente().getNombre() + pedido.getPrecioTotal()+pedido.getDireccionEnvio()+ " | "+ producto.getCategoria().getNombre() + " | " + producto.getNombre() +" | "+ unidades;
 	}
 	
 }

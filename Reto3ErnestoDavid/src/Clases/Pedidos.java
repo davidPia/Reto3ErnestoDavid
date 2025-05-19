@@ -13,6 +13,14 @@ public class Pedidos {
 	public Pedidos() {
 		super();
 	}
+	
+	public Pedidos(int idpedido, double precioTotal, String direccionEnvio, Date fecha) {
+		super();
+		this.idpedido = idpedido;
+		this.precioTotal = precioTotal;
+		this.direccionEnvio = direccionEnvio;
+		this.fecha = fecha;
+	}
 
 	public Pedidos(int idpedido, Clientes idcliente, double precioTotal, String direccionEnvio, Date fecha) {
 		super();
