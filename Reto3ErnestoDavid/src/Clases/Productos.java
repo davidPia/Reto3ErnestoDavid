@@ -113,7 +113,7 @@ public class Productos {
 	}
 	
 	public String toStringconCat() {
-		return "Categoria="+categoria.getIdcategoria()+ " nombre=" + nombre+ ", precio=" + precio + ", descripcion=" + descripcion + ", color=" + color + ", talla=" + talla
-				+ ", stock=" + stock;
+		return categoria.getIdcategoria()+ " / " + nombre+ " / " + precio + " / " + descripcion + " / " + color + " / " + talla
+				+ " / " + stock;
 	}
 } 
