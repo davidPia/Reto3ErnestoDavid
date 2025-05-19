@@ -113,8 +113,8 @@ public class main {
 			}
 			else if(opcion==1){
 				mostrarCategorias(listaCat);
-				System.out.println("Elige una categoria");
-				String nombreCat=sc.nextLine();
+				
+				String nombreCat=Util.funciones.dimeString("Elige una categoria", sc);
 				Categorias catElegi=new Categorias(0,nombreCat);
 				listaPro=ProductosDAO.listarProdCat(catElegi);
 				for (Productos productos : listaPro) {
@@ -123,12 +123,9 @@ public class main {
 			}else if(opcion==2) {
 				Productos pro= new Productos();
 				System.out.println("Introduzca el producto que desea buscar");
-				System.out.println("Nombre: ");
-				pro.setNombre(sc.nextLine());
-				System.out.println("Talla: ");
-				pro.setTalla(sc.nextLine());
-				System.out.println("Color: ");
-				pro.setColor(sc.nextLine());
+				pro.setNombre(Util.funciones.dimeString("Nombre: ", sc));	
+				pro.setTalla(Util.funciones.dimeString("Talla: ", sc));
+				pro.setColor(Util.funciones.dimeString("Color: ", sc));
 				buscarProductos(listaPro, pro);
 			}
 		}while(true);
@@ -150,15 +147,12 @@ public class main {
 				Clases.CategoriasDAO.insertarCat(cat);
 			}else if(opcion==2) {
 				System.out.println("Introduce los datos de un producto:");
-				System.out.println("nombre");
-				String nombre=sc.nextLine();
+				System.out.println();
+				String nombre=Util.funciones.dimeString("nombre", sc);
 				double precio=Util.funciones.dimeDouble("precio", sc);
-				System.out.println("descripcion ");
-				String descripcion=sc.nextLine();
-				System.out.println("color ");
-				String color=sc.nextLine();
-				System.out.println("talla ");
-				String talla=sc.nextLine();
+				String descripcion=Util.funciones.dimeString("descripcion ", sc);
+				String color=Util.funciones.dimeString("color ", sc);
+				String talla=Util.funciones.dimeString("talla ", sc);
 				int stock=Util.funciones.dimeEntero("stock", sc);
 				//Enseñar las categorias, elegir una y crear el producto
 				mostrarCategorias(listaCat);
@@ -168,7 +162,7 @@ public class main {
 				//Compruebo que la cat existe
 				do {
 					idcatElegida=Util.funciones.dimeEntero("Introduce el id de una categoria", sc);
-				}while(!(listaCat.contains(cat2.getIdcategoria())));
+				}while(!(listaCat.contains(cat2)));
 				cat2.setIdcategoria(idcatElegida);
 				
 				Productos pro= new Productos(cat2,nombre,precio,descripcion,color,talla,stock);
@@ -190,10 +184,8 @@ public class main {
 				break;
 			}
 			else if(opcion==1){
-				System.out.println("Introduce un nombre");
-				String nombre=sc.nextLine();
-				System.out.println("Introduce una direccion");
-				String direccion=sc.nextLine();
+				String nombre=Util.funciones.dimeString("Introduce un nombre", sc);
+				String direccion=Util.funciones.dimeString("Introduce una direccion", sc);
 				int codigo=Util.funciones.dimeEntero("Introduce un codigo", sc);
 				Clientes cli= new Clientes(nombre,direccion,codigo);
 				ClientesDAO.nuevoCliente(cli);

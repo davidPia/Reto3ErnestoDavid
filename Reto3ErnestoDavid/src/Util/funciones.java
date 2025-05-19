@@ -88,11 +88,11 @@ public class funciones {
 		System.out.println();
 	}
 	public static String dimeString(String texto,Scanner sc) {
+		String s;
 		do {
-			
-		}while();
-		System.out.println(texto);
-		String s=sc.nextLine();
+			System.out.println(texto);
+			s=sc.nextLine().trim();
+		}while(s.isEmpty());
 		return s;
 	}
 	
