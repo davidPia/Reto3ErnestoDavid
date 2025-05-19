@@ -5,7 +5,7 @@ import java.util.Date;
 public class Pedidos {
 
 	protected int idpedido;
-	protected int idcliente;
+	protected Clientes idcliente;
 	protected double precioTotal;
 	protected String direccionEnvio;
 	protected Date fecha;
@@ -14,7 +14,7 @@ public class Pedidos {
 		super();
 	}
 
-	public Pedidos(int idpedido, int idcliente, double precioTotal, String direccionEnvio, Date fecha) {
+	public Pedidos(int idpedido, Clientes idcliente, double precioTotal, String direccionEnvio, Date fecha) {
 		super();
 		this.idpedido = idpedido;
 		this.idcliente = idcliente;
@@ -31,11 +31,11 @@ public class Pedidos {
 		this.idpedido = idpedido;
 	}
 
-	public int getIdcliente() {
+	public Clientes getIdcliente() {
 		return idcliente;
 	}
 
-	public void setIdcliente(int idcliente) {
+	public void setIdcliente(Clientes idcliente) {
 		this.idcliente = idcliente;
 	}
 

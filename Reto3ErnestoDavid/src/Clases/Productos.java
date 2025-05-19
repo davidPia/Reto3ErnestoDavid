@@ -3,7 +3,7 @@ package Clases;
 public class Productos {
 
 	protected int idproducto;
-	protected int idcategoria;
+	protected Categorias idcategoria;
 	protected String nombre;
 	protected double precio;
 	protected String descripcion;
@@ -15,7 +15,7 @@ public class Productos {
 		super();
 	}
 	
-	public Productos(int idcategoria, String nombre, double precio, String descripcion, String color, String talla,
+	public Productos(Categorias idcategoria, String nombre, double precio, String descripcion, String color, String talla,
 			int stock) {
 		super();
 		this.idcategoria = idcategoria;
@@ -27,7 +27,7 @@ public class Productos {
 		this.stock = stock;
 	}
 
-	public Productos(int idproducto, int idcategoria, String nombre, double precio, String descripcion, String color,
+	public Productos(int idproducto, Categorias idcategoria, String nombre, double precio, String descripcion, String color,
 			String talla, int stock) {
 		super();
 		this.idproducto = idproducto;
@@ -48,11 +48,11 @@ public class Productos {
 		this.idproducto = idproducto;
 	}
 
-	public int getIdcategoria() {
+	public Categorias getIdcategoria() {
 		return idcategoria;
 	}
 
-	public void setIdcategoria(int idcategoria) {
+	public void setIdcategoria(Categorias idcategoria) {
 		this.idcategoria = idcategoria;
 	}
 

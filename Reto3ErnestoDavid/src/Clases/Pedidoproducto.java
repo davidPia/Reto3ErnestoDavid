@@ -3,8 +3,8 @@ package Clases;
 public class Pedidoproducto {
 
 	protected int idpedidoproducto;
-	protected int idpedido;
-	protected int idproducto;
+	protected Pedidos idpedido;
+	protected Productos idproducto;
 	protected int unidades;
 	protected double precio;
 	
@@ -12,7 +12,7 @@ public class Pedidoproducto {
 		super();
 	}
 
-	public Pedidoproducto(int idpedidoproducto, int idpedido, int idproducto, int unidades, double precio) {
+	public Pedidoproducto(int idpedidoproducto, Pedidos idpedido, Productos idproducto, int unidades, double precio) {
 		super();
 		this.idpedidoproducto = idpedidoproducto;
 		this.idpedido = idpedido;
@@ -29,19 +29,19 @@ public class Pedidoproducto {
 		this.idpedidoproducto = idpedidoproducto;
 	}
 
-	public int getIdpedido() {
+	public Pedidos getIdpedido() {
 		return idpedido;
 	}
 
-	public void setIdpedido(int idpedido) {
+	public void setIdpedido(Pedidos idpedido) {
 		this.idpedido = idpedido;
 	}
 
-	public int getIdproducto() {
+	public Productos getIdproducto() {
 		return idproducto;
 	}
 
-	public void setIdproducto(int idproducto) {
+	public void setIdproducto(Productos idproducto) {
 		this.idproducto = idproducto;
 	}
 
