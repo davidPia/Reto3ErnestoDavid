@@ -24,7 +24,8 @@ public class PedidosDAO {
 			stmt.setInt(1, mes);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				listaPedFech.add(new Pedidos(rs.getInt("idpedido"), rs.getInt("idcliente"), rs.getDouble("precioTotal"), rs.getString("direccionEnvio"), rs.getDate("fecha")));
+				Clientes cli = new Clientes(rs.getInt("idcliente"), "","",0);
+				listaPedFech.add(new Pedidos(rs.getInt("idpedido"), cli, rs.getDouble("precioTotal"), rs.getString("direccionEnvio"), rs.getDate("fecha")));
 			}
 			rs.close();
 		} catch (Exception ex) { 
@@ -47,7 +48,8 @@ public class PedidosDAO {
 			stmt.setInt(1, cliente.getCodigo());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				listaPedCli.add(new Pedidos(rs.getInt("idpedido"), rs.getInt("idcliente"), rs.getDouble("precioTotal"), rs.getString("direccionEnvio"), rs.getDate("fecha")));
+				Clientes cli = new Clientes(rs.getInt("idcliente"), "","",0);
+				listaPedCli.add(new Pedidos(rs.getInt("idpedido"), cli, rs.getDouble("precioTotal"), rs.getString("direccionEnvio"), rs.getDate("fecha")));
 			}
 			rs.close();
 		} catch (Exception ex) { 
