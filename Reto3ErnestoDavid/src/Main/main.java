@@ -57,7 +57,14 @@ public class main {
 				break;
 			}
 			else if(opcion==1) {
-				
+				List<Productos> mostrarProBajoStock = ProductosDAO.listarProdBajoStock();
+				for (Productos productos : mostrarProBajoStock) {
+					System.out.println(productos);
+				}
+				int numPro = funciones.dimeEntero("Introduce la cantidad en la que quieres aumentar el stock", sc);
+				if (numPro>0) {
+					ProductosDAO.actualizarStock(numPro);
+				}
 			}else if(opcion==2) {
 				int codigo = funciones.dimeEntero("Introduce el codigo de un cliente", sc);
 				Clientes cliente = new Clientes(codigo);

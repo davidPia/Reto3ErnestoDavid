@@ -96,7 +96,7 @@ public class ProductosDAO {
 		}
 	}
 	
-	public static List<Productos> listarProdBajoStock(Categorias cat) {
+	public static List<Productos> listarProdBajoStock() {
 		List<Productos> listaProd = new ArrayList<>();
 
 		try (Connection con = Conexion.abreConexion()) {
