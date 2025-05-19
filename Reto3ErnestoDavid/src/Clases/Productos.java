@@ -3,7 +3,7 @@ package Clases;
 public class Productos {
 
 	protected int idproducto;
-	protected Categorias idcategoria;
+	protected Categorias categoria;
 	protected String nombre;
 	protected double precio;
 	protected String descripcion;
@@ -15,10 +15,10 @@ public class Productos {
 		super();
 	}
 	
-	public Productos(Categorias idcategoria, String nombre, double precio, String descripcion, String color, String talla,
+	public Productos(Categorias categoria, String nombre, double precio, String descripcion, String color, String talla,
 			int stock) {
 		super();
-		this.idcategoria = idcategoria;
+		this.categoria = categoria;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.descripcion = descripcion;
@@ -27,11 +27,11 @@ public class Productos {
 		this.stock = stock;
 	}
 
-	public Productos(int idproducto, Categorias idcategoria, String nombre, double precio, String descripcion, String color,
+	public Productos(int idproducto, Categorias categoria, String nombre, double precio, String descripcion, String color,
 			String talla, int stock) {
 		super();
 		this.idproducto = idproducto;
-		this.idcategoria = idcategoria;
+		this.categoria = categoria;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.descripcion = descripcion;
@@ -39,6 +39,8 @@ public class Productos {
 		this.talla = talla;
 		this.stock = stock;
 	}
+
+	
 
 	public int getIdproducto() {
 		return idproducto;
@@ -48,12 +50,12 @@ public class Productos {
 		this.idproducto = idproducto;
 	}
 
-	public Categorias getIdcategoria() {
-		return idcategoria;
+	public Categorias getCategoria() {
+		return categoria;
 	}
 
-	public void setIdcategoria(Categorias idcategoria) {
-		this.idcategoria = idcategoria;
+	public void setCategoria(Categorias categoria) {
+		this.categoria = categoria;
 	}
 
 	public String getNombre() {
@@ -111,7 +113,7 @@ public class Productos {
 	}
 	
 	public String toStringconCat() {
-		return "Categoria="+idcategoria+ " nombre=" + nombre+ ", precio=" + precio + ", descripcion=" + descripcion + ", color=" + color + ", talla=" + talla
+		return "Categoria="+categoria.getIdcategoria()+ " nombre=" + nombre+ ", precio=" + precio + ", descripcion=" + descripcion + ", color=" + color + ", talla=" + talla
 				+ ", stock=" + stock;
 	}
 } 

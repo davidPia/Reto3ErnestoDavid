@@ -88,6 +88,7 @@ public class main {
 				Clientes cli= new Clientes(Util.funciones.dimeEntero("Introduce el codigo del cliente", sc));
 				cliElegido=ClientesDAO.buscarCliente(cli);
 				}while(cliElegido.getNombre().equals(""));
+				
 				System.out.println(cliElegido.getNombre());
 			}else if(opcion==2) {
 				List<Pedidos> mostrarPedFech = PedidosDAO.mostrarPedFech();
@@ -203,7 +204,7 @@ public class main {
 				}else {
 						System.out.println(clienteElegido);
 						ClientesDAO.modificarCliente(clienteElegido);
-					
+					//CAMBIAR DATOS
 				}
 			}
 		}while(true);
