@@ -121,7 +121,7 @@ public class ProductosDAO {
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement(
 					"update productos "
-					+ "set stock=+? "
+					+ "set stock=stock+? "
 					+ "where stock<5 and ?>0");
 			stmt.setInt(1, num);
 			stmt.setInt(2, num);
