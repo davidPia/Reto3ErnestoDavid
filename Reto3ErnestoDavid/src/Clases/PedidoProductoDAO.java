@@ -37,7 +37,7 @@ public class PedidoProductoDAO {
 		}
 		return listaPed;
 	}
-	public static List<Pedidoproducto> mostrarPedCLi() {
+	public static List<Pedidoproducto> mostrarPedCli(Clientes cli2) {
 		List<Pedidoproducto> listaPed = new ArrayList<Pedidoproducto>();
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("select ped.fecha, ped.precioTotal, ped.direccionEnvio, cat.nombre, pro.nombre, pedpro.unidades from pedidos ped "
@@ -47,6 +47,7 @@ public class PedidoProductoDAO {
 					+ "inner join categorias cat on pro.idcategoria=cat.idcategoria "
 					+ "where cli.codigo=?");
 			ResultSet rs = stmt.executeQuery();
+			stmt.setInt(1, cli2.getCodigo());
 			while (rs.next()) {
 				Clientes cli = new Clientes(0,"","",0);
 				Pedidos pedido= new Pedidos(0,cli, rs.getDouble("ped.precioTotal"), rs.getString("ped.direccionEnvio"),rs.getDate("ped.fecha"));
