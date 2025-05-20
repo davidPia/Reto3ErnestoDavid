@@ -70,9 +70,9 @@ public class main {
 			}else if(opcion==2) {
 				int codigo = funciones.dimeEntero("Introduce el codigo de un cliente", sc);
 				Clientes cliente = new Clientes(codigo);
-				List<Pedidos> mostrarPedCli = PedidosDAO.mostrarPedCli(cliente);
-				for (Pedidos pedidos : mostrarPedCli) {
-					System.out.println(pedidos);
+				List<Pedidoproducto> mostrarPedCli = PedidoProductoDAO.mostrarPedCli(cliente);
+				for (Pedidoproducto pedidoproducto : mostrarPedCli) {
+					System.out.println(pedidoproducto);
 				}
 			}else if(opcion==3) {
 				
