@@ -71,7 +71,9 @@ public class Pedidoproducto {
 
 	@Override
 	public String toString() {
-		return pedido.getFecha()+" | "+pedido.getCliente().getNombre() + pedido.getPrecioTotal()+pedido.getDireccionEnvio()+ " | "+ producto.getCategoria().getNombre() + " | " + producto.getNombre() +" | "+ unidades;
+		return pedido.getFecha()+" | "+pedido.getCliente().getNombre() +" |  "+ pedido.getPrecioTotal()+" | "+pedido.getDireccionEnvio()+ " | "+ producto.getCategoria().getNombre() + " | " + producto.getNombre() +" | "+ unidades;
 	}
-	
+	public String toStringSinCli() {
+		return  pedido.getFecha()+" | "+pedido.getPrecioTotal()+" | "+pedido.getDireccionEnvio()+" | "+producto.getCategoria().getNombre() +" | " + producto.getNombre() +" | "+unidades;
+	}
 }
