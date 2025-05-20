@@ -72,7 +72,7 @@ public class main {
 				Clientes cliente = new Clientes(codigo);
 				List<Pedidoproducto> mostrarPedCli = PedidoProductoDAO.mostrarPedCli(cliente);
 				for (Pedidoproducto pedidoproducto : mostrarPedCli) {
-					System.out.println(pedidoproducto);
+					System.out.println(pedidoproducto.toStringSinCli());
 				}
 			}else if(opcion==3) {
 				

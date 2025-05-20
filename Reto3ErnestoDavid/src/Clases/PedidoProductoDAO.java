@@ -42,12 +42,12 @@ public class PedidoProductoDAO {
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("select ped.fecha, ped.precioTotal, ped.direccionEnvio, cat.nombre, pro.nombre, pedpro.unidades from pedidos ped "
 					+ "inner join clientes cli on ped.idcliente=cli.idcliente "
-					+ "inner join pedidoproducto pedpro on ped.idpedido=cli.idpedido "
+					+ "inner join pedidoproducto pedpro on ped.idpedido=pedpro.idpedido "
 					+ "inner join productos pro on pedpro.idproducto=pro.idproducto "
 					+ "inner join categorias cat on pro.idcategoria=cat.idcategoria "
 					+ "where cli.codigo=?");
-			ResultSet rs = stmt.executeQuery();
 			stmt.setInt(1, cli2.getCodigo());
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Clientes cli = new Clientes(0,"","",0);
 				Pedidos pedido= new Pedidos(0,cli, rs.getDouble("ped.precioTotal"), rs.getString("ped.direccionEnvio"),rs.getDate("ped.fecha"));
