@@ -62,6 +62,10 @@ inner join categorias e on d.idcategoria=e.idcategoria
 where b.codigo=?;
 
 -- 4.3
-select * from productos a
+select c.nombre, a.nombre, a.stock, sum(b.unidades) from productos a
 inner join pedidoproducto b on b.idproducto=a.idproducto
-where b.unidades=(select max(unidades) from pedidoproducto);
+inner join categorias c on c.idcategoria=a.idcategoria
+group by b.idproducto
+having sum(b.unidades)=(select sum(unidades) from pedidoproducto
+group by idproducto
+order by sum(unidades) DESC limit 1)
