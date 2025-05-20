@@ -11,6 +11,14 @@ public class Pedidoproducto {
 	public Pedidoproducto() {
 		super();
 	}
+	
+	public Pedidoproducto(Pedidos pedido, Productos producto, int unidades, double precio) {
+		super();
+		this.pedido = pedido;
+		this.producto = producto;
+		this.unidades = unidades;
+		this.precio = precio;
+	}
 
 	public Pedidoproducto(int idpedidoproducto, Pedidos pedido, Productos producto, int unidades, double precio) {
 		super();
@@ -63,7 +71,7 @@ public class Pedidoproducto {
 
 	@Override
 	public String toString() {
-		return pedido.getFecha()+" | "+pedido.getIdcliente().getNombre() + pedido.getPrecioTotal()+pedido.getDireccionEnvio()+ " | "+ producto.getCategoria().getNombre() + " | " + producto.getNombre() +" | "+ unidades;
+		return pedido.getFecha()+" | "+pedido.getCliente().getNombre() + pedido.getPrecioTotal()+pedido.getDireccionEnvio()+ " | "+ producto.getCategoria().getNombre() + " | " + producto.getNombre() +" | "+ unidades;
 	}
 	
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Pedidos {
 
 	protected int idpedido;
-	protected Clientes idcliente;
+	protected Clientes cliente;
 	protected double precioTotal;
 	protected String direccionEnvio;
 	protected Date fecha;
@@ -22,10 +22,10 @@ public class Pedidos {
 		this.fecha = fecha;
 	}
 
-	public Pedidos(int idpedido, Clientes idcliente, double precioTotal, String direccionEnvio, Date fecha) {
+	public Pedidos(int idpedido, Clientes cliente, double precioTotal, String direccionEnvio, Date fecha) {
 		super();
 		this.idpedido = idpedido;
-		this.idcliente = idcliente;
+		this.cliente = cliente;
 		this.precioTotal = precioTotal;
 		this.direccionEnvio = direccionEnvio;
 		this.fecha = fecha; 
@@ -39,12 +39,12 @@ public class Pedidos {
 		this.idpedido = idpedido;
 	}
 
-	public Clientes getIdcliente() {
-		return idcliente;
+	public Clientes getCliente() {
+		return cliente;
 	}
 
-	public void setIdcliente(Clientes idcliente) {
-		this.idcliente = idcliente;
+	public void setCliente(Clientes idcliente) {
+		this.cliente = idcliente;
 	}
 
 	public double getPrecioTotal() {
@@ -73,7 +73,7 @@ public class Pedidos {
 
 	@Override
 	public String toString() {
-		return "Pedidos [idpedido=" + idpedido + ", idcliente=" + idcliente + ", precioTotal=" + precioTotal
+		return "Pedidos [idpedido=" + idpedido + ", idcliente=" + cliente + ", precioTotal=" + precioTotal
 				+ ", direccionEnvio=" + direccionEnvio + ", fecha=" + fecha + "]";
 	}
 	
