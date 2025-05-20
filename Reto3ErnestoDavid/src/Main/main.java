@@ -91,14 +91,8 @@ public class main {
 			if(opcion==3){
 				break;
 			}else if(opcion==1) {
-				System.out.println("");
-				Clientes cliElegido=new Clientes();
-				do {
-				Clientes cli= new Clientes(Util.funciones.dimeEntero("Introduce el codigo del cliente", sc));
-				cliElegido=ClientesDAO.buscarCliente(cli);
-				}while(cliElegido.getNombre().equals(""));
+				crearPedido(sc);
 				
-				System.out.println(cliElegido.getNombre());
 			}else if(opcion==2) {
 				List<Pedidoproducto> mostrarPedFech = PedidoProductoDAO.mostrarPedFech();
 				for (Pedidoproducto Pedidoproducto : mostrarPedFech) {
@@ -108,6 +102,34 @@ public class main {
 		}while(true);
 		
 	}
+	public static void crearPedido(Scanner sc) {
+		Clientes cliElegido=new Clientes();
+		Clientes cliBuscado= new Clientes();
+		Productos proElegido=new Productos();
+		Productos proBuscado= new Productos();
+		do {
+			cliElegido.setCodigo(Util.funciones.dimeEntero("Introduce un codigo de cliente", sc));
+			cliBuscado=ClientesDAO.buscarCliente(cliElegido);
+			if(!(cliBuscado==null)) {
+				break;
+			}
+		}while(true);
+		System.out.println(cliBuscado.getNombre());
+		String nombreProd="";
+		do {
+			nombreProd=Util.funciones.dimeString("Introduce el nombre de un producto (intro para salir)", sc);
+			proElegido.setNombre(nombreProd);
+			proBuscado=ProductosDAO.buscarProTodo(proElegido);
+			if(proBuscado!=null) {
+				int unidadesDeseadas= Util.funciones.dimeEntero("Cuantas unidades quieres", sc);
+				
+			}
+			
+		}while(!(nombreProd.equals("")));
+	
+		
+	}
+	
 	//submenu de catalogo(opcion 2)
 	public static void catalogo_prod(Scanner sc) {
 		List<Categorias> listaCat= new ArrayList<>();
@@ -132,9 +154,12 @@ public class main {
 			}else if(opcion==2) {
 				Productos pro= new Productos();
 				System.out.println("Introduzca el producto que desea buscar");
-				pro.setNombre(Util.funciones.dimeString("Nombre: ", sc));	
-				pro.setTalla(Util.funciones.dimeString("Talla: ", sc));
-				pro.setColor(Util.funciones.dimeString("Color: ", sc));
+				System.out.println("Nombre: ");
+				pro.setNombre(sc.nextLine());
+				System.out.println("Talla: ");
+				pro.setTalla(sc.nextLine());
+				System.out.println("Color: ");
+				pro.setColor(sc.nextLine());
 				buscarProductos(listaPro, pro);
 			}
 		}while(true);

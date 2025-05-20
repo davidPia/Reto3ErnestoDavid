@@ -35,7 +35,8 @@ where nombre=? and talla=? and color=?;
 select * from clientes
 where codigo= ?;
 
-
+select * from productos 
+where nombre='?';
 -- 3.2
 select a.fecha, b.nombre, a.precioTotal, a.direccion, e.nombre, d.nombre, c.unidades from pedidos a
 inner join clientes b on a.idcliente=b.idcliente

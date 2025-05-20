@@ -31,7 +31,29 @@ public class ProductosDAO {
 		}
 		return listaProd;
 	}
+	public static  Productos buscarProTodo(Productos pro) {
+		Productos proElegido = null;
+		try (Connection con = Conexion.abreConexion()) {
+			PreparedStatement stmt = con.prepareStatement("select * from productos "
+					+ "where nombre='?'");
+			stmt.setString(1, pro.getNombre());
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				Categorias cat=new Categorias(rs.getInt("idcategoria"),"");
+				proElegido=new Productos(cat,rs.getString("nombre"),rs.getDouble("precio"),rs.getString("descripcion"),rs.getString("color"),rs.getString("talla"),rs.getInt("stock"));
+			}
+		} catch (Exception ex) {
 
+			ex.printStackTrace();
+		} finally {
+			Conexion.cierraConexion();
+		}
+		return proElegido;
+	}
+	
+	
+	
+	
 	public static List<Productos> buscarPro(Productos pro) {
 		List<Productos> listaPro = new ArrayList<>();
 		int contador=1;
