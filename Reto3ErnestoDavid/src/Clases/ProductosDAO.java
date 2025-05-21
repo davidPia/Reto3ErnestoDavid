@@ -154,4 +154,29 @@ public class ProductosDAO {
 			Conexion.cierraConexion();
 		}
 	}
+	
+	public static List<Productos> listarProdVentas() {
+		List<Productos> listaProd = new ArrayList<>();
+
+		try (Connection con = Conexion.abreConexion()) {
+			PreparedStatement stmt = con.prepareStatement("select c.nombre, a.nombre, a.stock from productos a "
+					+ "inner join pedidoproducto b on b.idproducto=a.idproducto "
+					+ "inner join categorias c on c.idcategoria=a.idcategoria "
+					+ "group by b.idproducto "
+					+ "having sum(b.unidades)=(select sum(unidades) from pedidoproducto "
+					+ "group by idproducto "
+					+ "order by sum(unidades) DESC limit 1)");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Categorias cat = new Categorias(0, rs.getString("c.nombre"));
+				listaProd.add(new Productos(cat, rs.getString("a.nombre"), rs.getInt("a.stock")));
+			}
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+		} finally {
+			Conexion.cierraConexion();
+		}
+		return listaProd;
+	}
 }

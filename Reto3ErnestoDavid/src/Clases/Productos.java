@@ -15,6 +15,15 @@ public class Productos {
 		super();
 	}
 	
+	
+	public Productos(Categorias categoria, String nombre, int stock) {
+		super();
+		this.categoria = categoria;
+		this.nombre = nombre;
+		this.stock = stock;
+	}
+
+
 	public Productos(Categorias categoria, String nombre, double precio, String descripcion, String color, String talla,
 			int stock) {
 		super();
@@ -115,5 +124,9 @@ public class Productos {
 	public String toStringconCat() {
 		return categoria.getIdcategoria()+ " / " + nombre+ " / " + precio + " / " + descripcion + " / " + color + " / " + talla
 				+ " / " + stock;
+	}
+	
+	public String toStringVentas() {
+		return categoria.getNombre()+" / "+nombre+" / "+stock;
 	}
 } 
