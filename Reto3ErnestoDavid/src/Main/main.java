@@ -107,6 +107,7 @@ public class main {
 		Clientes cliBuscado= new Clientes();
 		Productos proElegido=new Productos();
 		Productos proBuscado= new Productos();
+		
 		do {
 			cliElegido.setCodigo(Util.funciones.dimeEntero("Introduce un codigo de cliente", sc));
 			cliBuscado=ClientesDAO.buscarCliente(cliElegido);
@@ -122,7 +123,10 @@ public class main {
 			proBuscado=ProductosDAO.buscarProTodo(proElegido);
 			if(proBuscado!=null) {
 				int unidadesDeseadas= Util.funciones.dimeEntero("Cuantas unidades quieres", sc);
-				
+				if(proBuscado.getStock()<unidadesDeseadas) {
+					unidadesDeseadas=proBuscado.getStock();
+				}
+			
 			}
 			
 		}while(!(nombreProd.equals("")));
