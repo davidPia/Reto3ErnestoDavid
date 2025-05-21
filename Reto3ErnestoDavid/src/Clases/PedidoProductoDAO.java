@@ -10,6 +10,32 @@ import java.util.List;
 import Util.Conexion;
 
 public class PedidoProductoDAO {
+	public static double sumPrecioTotal(Pedidos ped) {
+		try (Connection con = Conexion.abreConexion()) {
+			PreparedStatement stmt = con.prepareStatement("select sum(precio) pedidoproducto "
+					+ "where idpedido=? ");
+		}catch (Exception ex) { 
+			ex.printStackTrace();
+		}finally {
+			Conexion.cierraConexion();
+		}
+	}
+	public static void insertarPedPro(Pedidoproducto pedpro) {
+		try (Connection con = Conexion.abreConexion()) {
+			PreparedStatement stmt = con.prepareStatement("insert pedidoproducto (idpedido,idproducto,unidades,precio) "
+					+ "values (?,?,?,?)");
+			stmt.setInt(1,pedpro.getPedido().getIdpedido());
+			stmt.setInt(2, pedpro.getProducto().getIdproducto());
+			stmt.setInt(3, pedpro.getUnidades());
+			stmt.setDouble(4, pedpro.getPrecio());
+			stmt.execute();
+		} catch (Exception ex) { 
+			ex.printStackTrace();
+		}finally {
+			Conexion.cierraConexion();
+		}
+	}
+	
 	public static List<Pedidoproducto> mostrarPedFech() {
 		List<Pedidoproducto> listaPed = new ArrayList<Pedidoproducto>();
 		try (Connection con = Conexion.abreConexion()) {

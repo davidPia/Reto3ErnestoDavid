@@ -129,7 +129,10 @@ public class funciones {
 		java.util.Date d = Date.from(fLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		return new Date(d.getTime());
 	}
-
+	public static java.sql.Date convierteFecha(Date fecha)
+	{
+		return new java.sql.Date(fecha.getTime());
+	}
 }
 
 

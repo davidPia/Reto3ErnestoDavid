@@ -111,32 +111,54 @@ public class main {
 		Productos proElegido=new Productos();
 		Productos proBuscado= new Productos();
 		
+		
 		do {
 			cliElegido.setCodigo(Util.funciones.dimeEntero("Introduce un codigo de cliente", sc));
 			cliBuscado=ClientesDAO.buscarCliente(cliElegido);
-			if(!(cliBuscado==null)) {
+			if(cliBuscado!=null) {
 				break;
 			}
 		}while(true);
 		System.out.println(cliBuscado.getNombre());
 		String nombreProd="";
+		
+		Pedidos pedidoCreado=PedidosDAO.insertarPedido(cliBuscado);
+		Pedidoproducto pedpro= new Pedidoproducto();
 		do {
-			nombreProd=Util.funciones.dimeString("Introduce el nombre de un producto (intro para salir)", sc);
-			proElegido.setNombre(nombreProd);
-			proBuscado=ProductosDAO.buscarProTodo(proElegido);
-			if(proBuscado!=null) {
-				int unidadesDeseadas= Util.funciones.dimeEntero("Cuantas unidades quieres", sc);
-				if(proBuscado.getStock()<unidadesDeseadas) {
-					unidadesDeseadas=proBuscado.getStock();
+			
+			pedpro.setPedido(pedidoCreado);
+			String otro= Util.funciones.dimeString("Desea anadir un producto (si/no)", sc);
+			if(otro.equalsIgnoreCase("no")) {
+				break;
+			}else if(otro.equalsIgnoreCase("si")){
+				nombreProd=Util.funciones.dimeString("Introduce el nombre de un producto (intro para salir)", sc);
+				proElegido.setNombre(nombreProd);
+				
+				proBuscado=ProductosDAO.buscarProTodo(proElegido);
+				if(proBuscado!=null) {
+					int unidadesDeseadas= Util.funciones.dimeEntero("Cuantas unidades quieres", sc);
+					if(proBuscado.getStock()==0 || proBuscado.getStock()<0) {
+						System.out.println("No queda ninguna unidad");
+					}else {
+						if(proBuscado.getStock()<unidadesDeseadas) {
+							unidadesDeseadas=proBuscado.getStock(); 
+						}
+						proBuscado.setStock(proBuscado.getStock()-unidadesDeseadas);
+						pedpro.setUnidades(unidadesDeseadas);
+						pedpro.setPedido(pedidoCreado);
+						pedpro.setIdproducto(proBuscado);
+						pedpro.setPrecio(proBuscado.getPrecio()*unidadesDeseadas);
+						PedidoProductoDAO.insertarPedPro(pedpro);
+					}
+					
 				}
-			
 			}
-			
-		}while(!(nombreProd.equals("")));
-	
+		}while(true);
+		//SUM PRECIO  UPDATE PEDIDO
+		
 		
 	}
-	
+
 	//submenu de catalogo(opcion 2)
 	public static void catalogo_prod(Scanner sc) {
 		List<Categorias> listaCat= new ArrayList<>();
