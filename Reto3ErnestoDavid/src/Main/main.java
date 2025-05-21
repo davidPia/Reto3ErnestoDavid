@@ -75,7 +75,10 @@ public class main {
 					System.out.println(pedidoproducto.toStringSinCli());
 				}
 			}else if(opcion==3) {
-				
+				List<Productos> productosMasVendidos = ProductosDAO.listarProdVentas();
+				for (Productos productos : productosMasVendidos) {
+					System.out.println(productos.toStringVentas());
+				}
 			}
 		}while(true);
 		
