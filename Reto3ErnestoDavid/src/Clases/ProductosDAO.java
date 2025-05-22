@@ -61,7 +61,7 @@ public class ProductosDAO {
 		String sql = "select * from productos where 1=1 ";
 		try (Connection con = Conexion.abreConexion()) {
 			if (!(pro.getNombre().equals(""))) {
-				sql = sql.concat("and nombre=?");
+				sql = sql.concat("and nombre like ?");
 				
 			}
 			if (!(pro.getTalla().equals(""))) {
@@ -75,7 +75,7 @@ public class ProductosDAO {
 		
 			PreparedStatement stmt = con.prepareStatement(sql);
 			if (!(pro.getNombre().equals(""))) {
-				stmt.setString(contador++,pro.getNombre());
+				stmt.setString(contador++, "%"+pro.getNombre()+"%");
 				
 			}
 			if (!(pro.getTalla().equals(""))) {
@@ -155,7 +155,22 @@ public class ProductosDAO {
 			Conexion.cierraConexion();
 		}
 	}
-	
+	public static void restarStock(Productos pro, int unidades) {
+		try (Connection con = Conexion.abreConexion()) {
+			PreparedStatement stmt = con.prepareStatement(
+					"update productos "
+					+ "set stock=stock-? "
+					+ "where idproducto = ?");
+			stmt.setInt(1,unidades);
+			stmt.setInt(2, pro.getIdproducto());
+			
+			stmt.execute();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Conexion.cierraConexion();
+		}
+	}
 	public static List<Productos> listarProdVentas() {
 		List<Productos> listaProd = new ArrayList<>();
 

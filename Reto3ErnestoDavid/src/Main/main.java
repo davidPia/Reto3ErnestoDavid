@@ -144,6 +144,7 @@ public class main {
 							unidadesDeseadas=proBuscado.getStock(); 
 						}
 						proBuscado.setStock(proBuscado.getStock()-unidadesDeseadas);
+						ProductosDAO.restarStock(proBuscado, unidadesDeseadas);
 						pedpro.setUnidades(unidadesDeseadas);
 						pedpro.setPedido(pedidoCreado);
 						pedpro.setIdproducto(proBuscado);
@@ -196,6 +197,7 @@ public class main {
 	//submenu de mantenimientos(opcion 1)
 	public static void mantenimientos(Scanner sc) {
 		List<Categorias> listaCat=new ArrayList<>();
+		listaCat=CategoriasDAO.mostrarCat();
 		do {
 			System.out.println("1-Gestión de categorías");
 			System.out.println("2-Gestión de productos");
@@ -205,8 +207,7 @@ public class main {
 			if(opcion==4){
 				break;
 			}else if(opcion==1) {
-				System.out.println("Introduce una nueva categoria");
-				Categorias cat=new Categorias(sc.nextLine());
+				Categorias cat=new Categorias(Util.funciones.dimeString("Introduce una nueva categoria", sc));
 				Clases.CategoriasDAO.insertarCat(cat);
 			}else if(opcion==2) {
 				System.out.println("Introduce los datos de un producto:");
@@ -225,6 +226,7 @@ public class main {
 				//Compruebo que la cat existe
 				do {
 					idcatElegida=Util.funciones.dimeEntero("Introduce el id de una categoria", sc);
+					cat2.setIdcategoria(idcatElegida);
 				}while(!(listaCat.contains(cat2)));
 				cat2.setIdcategoria(idcatElegida);
 				
@@ -249,9 +251,19 @@ public class main {
 			else if(opcion==1){
 				String nombre=Util.funciones.dimeString("Introduce un nombre", sc);
 				String direccion=Util.funciones.dimeString("Introduce una direccion", sc);
-				int codigo=Util.funciones.dimeEntero("Introduce un codigo", sc);
-				Clientes cli= new Clientes(nombre,direccion,codigo);
+				int codigo;
+				Clientes cli=new Clientes();
+				do {
+					codigo=Util.funciones.dimeEntero("Introduce un codigo", sc);
+					if(ClientesDAO.buscarCliente(cli)==null) {
+						break;
+					}
+				}while(true);
+				cli.setNombre(nombre);
+				cli.setDireccion(direccion);
+				cli.setCodigo(codigo);
 				ClientesDAO.nuevoCliente(cli);
+				
 			}else if(opcion==2) {
 				Clientes cliBuscar=new Clientes();
 				cliBuscar.setCodigo(Util.funciones.dimeEntero("Introduce un codigo de cliente ", sc));
@@ -260,14 +272,25 @@ public class main {
 					System.out.println("No existe un cliente con ese id");
 				}else {
 						System.out.println(clienteElegido);
+						clienteElegido.setNombre(Util.funciones.dimeString("Introduce el nuevo nombre", sc));
+						clienteElegido.setDireccion(Util.funciones.dimeString("Introduce la nueva direccion", sc));
+						int codigo;
+						do {
+							codigo=Util.funciones.dimeEntero("Introduce un codigo", sc);
+							if(ClientesDAO.buscarCliente(clienteElegido)==null) {
+								break;
+							}
+						}while(true);
+						clienteElegido.setCodigo(codigo);
 						ClientesDAO.modificarCliente(clienteElegido);
 					//CAMBIAR DATOS
+						
 				}
 			}
 		}while(true);
 	}
 	public static void mostrarCategorias(List<Categorias> listaCat) {
-		listaCat=CategoriasDAO.mostrarCat();
+		
 		for (Categorias categorias : listaCat) {
 			System.out.println(categorias);
 		}

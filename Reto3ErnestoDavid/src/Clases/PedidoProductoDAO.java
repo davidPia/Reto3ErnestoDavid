@@ -28,6 +28,8 @@ public class PedidoProductoDAO {
 		}
 		return ped;
 	}
+	
+	
 	public static void insertarPedPro(Pedidoproducto pedpro) {
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("insert pedidoproducto (idpedido,idproducto,unidades,precio) "
