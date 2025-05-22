@@ -26,6 +26,11 @@ public class CategoriasDAO {
 		}
 		return listaCat;
 	}
+	
+	/**
+	 * Esta funcion recive los valores de una categoria y la crea
+	 * @param cat Categoria
+	 */
 	public static void insertarCat(Categorias cat) {
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("Insert into categorias(nombre) values (?)");
