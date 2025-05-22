@@ -13,12 +13,12 @@ import Util.Conexion;
 public class PedidoProductoDAO {
 	public static Pedidos sumPrecioTotal(Pedidos ped) {
 		try (Connection con = Conexion.abreConexion()) {
-			PreparedStatement stmt = con.prepareStatement("select sum(precio) pedidoproducto "
+			PreparedStatement stmt = con.prepareStatement("select sum(precio) as precioTotal from pedidoproducto "
 					+ "where idpedido=? ");
 			stmt.setInt(1, ped.getIdpedido());
 			ResultSet rs=stmt.executeQuery();
 			if(rs.next()) {
-				ped.setPrecioTotal(rs.getDouble("precio"));
+				ped.setPrecioTotal(rs.getDouble("precioTotal"));
 				System.out.println(ped.getPrecioTotal());
 			}
 		}catch (Exception ex) { 

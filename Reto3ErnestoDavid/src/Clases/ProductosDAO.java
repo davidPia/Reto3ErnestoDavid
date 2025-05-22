@@ -15,7 +15,7 @@ public class ProductosDAO {
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("select * from productos a "
 					+ "inner join categorias b on a.idcategoria=b.idcategoria "
-					+ "where b.nombre=?");
+					+ "where b.nombre like ?");
 			stmt.setString(1, cat.getNombre());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -33,14 +33,15 @@ public class ProductosDAO {
 	}
 	public static  Productos buscarProTodo(Productos pro) {
 		Productos proElegido = null;
+		
 		try (Connection con = Conexion.abreConexion()) {
 			System.out.println(pro.getNombre());
-			PreparedStatement stmt = con.prepareStatement("select * from productos where nombre=?");
+			PreparedStatement stmt = con.prepareStatement("select * from productos where nombre like ?");
 			stmt.setString(1, pro.getNombre());
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
 				Categorias cat=new Categorias(rs.getInt("idcategoria"),"");
-				proElegido=new Productos(cat,rs.getString("nombre"),rs.getDouble("precio"),rs.getString("descripcion"),rs.getString("color"),rs.getString("talla"),rs.getInt("stock"));
+				proElegido=new Productos(rs.getInt("idproducto"),cat,rs.getString("nombre"),rs.getDouble("precio"),rs.getString("descripcion"),rs.getString("color"),rs.getString("talla"),rs.getInt("stock"));
 			}
 		} catch (Exception ex) {
 
