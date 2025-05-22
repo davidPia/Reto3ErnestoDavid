@@ -154,7 +154,7 @@ public class main {
 				}
 			}
 		}while(true);
-		//SUM PRECIO  UPDATE PEDIDO
+		PedidoProductoDAO.sumPrecioTotal(pedidoCreado);
 		
 		
 	}

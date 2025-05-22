@@ -34,8 +34,8 @@ public class ProductosDAO {
 	public static  Productos buscarProTodo(Productos pro) {
 		Productos proElegido = null;
 		try (Connection con = Conexion.abreConexion()) {
-			PreparedStatement stmt = con.prepareStatement("select * from productos "
-					+ "where nombre='?'");
+			System.out.println(pro.getNombre());
+			PreparedStatement stmt = con.prepareStatement("select * from productos where nombre=?");
 			stmt.setString(1, pro.getNombre());
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {

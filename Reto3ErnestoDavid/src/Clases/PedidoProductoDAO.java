@@ -3,6 +3,7 @@ package Clases;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +11,22 @@ import java.util.List;
 import Util.Conexion;
 
 public class PedidoProductoDAO {
-	public static double sumPrecioTotal(Pedidos ped) {
+	public static Pedidos sumPrecioTotal(Pedidos ped) {
 		try (Connection con = Conexion.abreConexion()) {
 			PreparedStatement stmt = con.prepareStatement("select sum(precio) pedidoproducto "
 					+ "where idpedido=? ");
+			stmt.setInt(1, ped.getIdpedido());
+			ResultSet rs=stmt.executeQuery();
+			if(rs.next()) {
+				ped.setPrecioTotal(rs.getDouble("precio"));
+				System.out.println(ped.getPrecioTotal());
+			}
 		}catch (Exception ex) { 
 			ex.printStackTrace();
 		}finally {
 			Conexion.cierraConexion();
 		}
+		return ped;
 	}
 	public static void insertarPedPro(Pedidoproducto pedpro) {
 		try (Connection con = Conexion.abreConexion()) {
@@ -29,11 +37,14 @@ public class PedidoProductoDAO {
 			stmt.setInt(3, pedpro.getUnidades());
 			stmt.setDouble(4, pedpro.getPrecio());
 			stmt.execute();
-		} catch (Exception ex) { 
+			
+		
+		}catch (Exception ex) { 
 			ex.printStackTrace();
 		}finally {
 			Conexion.cierraConexion();
 		}
+		
 	}
 	
 	public static List<Pedidoproducto> mostrarPedFech() {
