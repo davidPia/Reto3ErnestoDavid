@@ -22,6 +22,14 @@ public class Pedidos {
 		this.fecha = fecha;
 	}
 
+	/**
+	 * Constructor con todos los parametros
+	 * @param idpedido int
+	 * @param cliente Clientes
+	 * @param precioTotal double
+	 * @param direccionEnvio string
+	 * @param fecha date
+	 */
 	public Pedidos(int idpedido, Clientes cliente, double precioTotal, String direccionEnvio, Date fecha) {
 		super();
 		this.idpedido = idpedido;

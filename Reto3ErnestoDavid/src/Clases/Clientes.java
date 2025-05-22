@@ -24,7 +24,14 @@ public class Clientes {
 		this.direccion = direccion;
 		this.codigo = codigo;
 	}
-
+	
+	/**
+	 * Constructor con todos los parametros
+	 * @param idcliente int 
+	 * @param nombre string
+	 * @param direccion string
+	 * @param codigo int
+	 */
 	public Clientes(int idcliente, String nombre, String direccion, int codigo) {
 		super();
 		this.idcliente = idcliente;

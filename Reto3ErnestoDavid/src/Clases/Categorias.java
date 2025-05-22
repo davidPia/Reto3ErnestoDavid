@@ -14,6 +14,11 @@ public class Categorias {
 		this.nombre = nombre;
 	}
 
+	/**
+	 * Constructor con todos los parametros
+	 * @param idcategoria int
+	 * @param nombre string
+	 */
 	public Categorias(int idcategoria, String nombre) {
 		super();
 		this.idcategoria = idcategoria;

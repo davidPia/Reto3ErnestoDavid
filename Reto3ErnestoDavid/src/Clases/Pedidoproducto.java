@@ -20,6 +20,14 @@ public class Pedidoproducto {
 		this.precio = precio;
 	}
 
+	/**
+	 * Constructor con todos los parametros
+	 * @param idpedidoproducto int
+	 * @param pedido Pedidos
+	 * @param producto Productos
+	 * @param unidades int
+	 * @param precio double
+	 */
 	public Pedidoproducto(int idpedidoproducto, Pedidos pedido, Productos producto, int unidades, double precio) {
 		super();
 		this.idpedidoproducto = idpedidoproducto;

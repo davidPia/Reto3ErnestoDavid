@@ -36,6 +36,17 @@ public class Productos {
 		this.stock = stock;
 	}
 
+	/**
+	 * Constructor con todos los parametros
+	 * @param idproducto int
+	 * @param categoria Categorias
+	 * @param nombre string
+	 * @param precio double
+	 * @param descripcion string
+	 * @param color string
+	 * @param talla string
+	 * @param stock int
+	 */
 	public Productos(int idproducto, Categorias categoria, String nombre, double precio, String descripcion, String color,
 			String talla, int stock) {
 		super();
