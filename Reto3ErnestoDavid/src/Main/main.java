@@ -259,7 +259,7 @@ public class main {
 						break;
 					}
 				}while(true);
-				cli.setNombre(nombre);
+ 				cli.setNombre(nombre); 
 				cli.setDireccion(direccion);
 				cli.setCodigo(codigo);
 				ClientesDAO.nuevoCliente(cli);
